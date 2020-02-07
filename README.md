@@ -1,4 +1,4 @@
-# react-srcset
+# 📐🖼️ react-srcset
 
 > Automated responsive images
 
@@ -7,6 +7,8 @@
 ## Install
 
 ```bash
+yarn add react-srcset
+// or
 npm install --save react-srcset
 ```
 
@@ -15,14 +17,9 @@ npm install --save react-srcset
 ```jsx
 import React, { Component } from 'react'
 
-import { useMyHook } from 'react-srcset'
+import { Picture } from 'react-srcset'
 
-const Example = () => {
-  const example = useMyHook()
-  return (
-    <div>{example}</div>
-  )
-}
+const MyComponent = () => <Picture />;
 ```
 
 ## License
@@ -31,4 +28,4 @@ MIT © [Antistatique](https://github.com/Antistatique)
 
 ---
 
-This hook is created using [create-react-hook](https://github.com/hermanya/create-react-hook).
+This library is created using [create-react-hook](https://github.com/hermanya/create-react-hook).
