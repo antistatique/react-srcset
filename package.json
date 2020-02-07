@@ -19,9 +19,21 @@
     "start": "rollup -c -w",
     "prepare": "yarn run build",
     "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "lint:css": "stylelint ./**/*.{css,scss,styles.js,styles.jsx}",
+    "lint:js": "eslint . --ext .js,.jsx --max-warnings=0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": "eslint --ext .js,.jsx --max-warnings=0",
+    "src/**/*.{css,scss,styles.js,styles.jsx}": "stylelint"
   },
   "peerDependencies": {
+    "prop-types": "^15.7.2",
     "react": "^16.9.0"
   },
   "devDependencies": {
@@ -48,37 +60,37 @@
     "@testing-library/react-hooks": "^3.2.1",
     "antistatique-linters-config": "0.0.4",
     "babel-eslint": "^10.0.3",
-    "cross-env": "^5.2.0",
+    "cross-env": "^7.0.0",
     "eslint": "^6.3.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.2.0",
-    "eslint-config-standard": "^11.0.0",
-    "eslint-config-standard-react": "^6.0.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-config-standard-react": "^9.2.0",
     "eslint-config-wesbos": "0.0.19",
     "eslint-plugin-html": "^6.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^2.0.1",
-    "eslint-plugin-standard": "^3.1.0",
+    "eslint-plugin-standard": "^4.0.1",
     "gh-pages": "^2.0.1",
-    "husky": "^3.0.5",
-    "lint-staged": "^9.2.5",
+    "husky": "^4.2.1",
+    "lint-staged": "^10.0.7",
     "prettier": "^1.18.2",
     "react": "^16.9.0",
     "react-scripts": "^3.0.1",
     "react-test-renderer": "^16.9.0",
     "rollup": "^1.1.2",
     "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-commonjs": "^9.2.0",
-    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
-    "rollup-plugin-url": "^2.1.0",
-    "stylelint": "^10.1.0",
-    "stylelint-config-standard": "^18.3.0",
-    "stylelint-order": "^3.1.0"
+    "rollup-plugin-url": "^3.0.1",
+    "stylelint": "^13.0.0",
+    "stylelint-config-standard": "^19.0.0",
+    "stylelint-order": "^4.0.0"
   }
 }

@@ -4,21 +4,7 @@
     "plugin:import/errors",
     "plugin:import/warnings"
   ],
-  "plugins": ["import", "react"],
-  "env": {
-    "es6": true
-  },
-  "parser": "babel-eslint",
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "paths": ["src"]
-      }
-    }
-  },
-  "parserOptions": {
-    "sourceType": "module"
-  },
+  "plugins": ["import"],
   "rules": {
     "react-hooks/exhaustive-deps": 0,
     "react/jsx-props-no-spreading": 0,
