@@ -1,7 +1,7 @@
 {
   "name": "react-srcset",
-  "version": "1.0.0",
-  "description": "Automated responsive images",
+  "version": "0.0.1",
+  "description": "Pictures dedicated React components",
   "author": "Antistatique",
   "license": "MIT",
   "repository": "antistatique/react-srcset",
