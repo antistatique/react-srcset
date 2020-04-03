@@ -22,6 +22,23 @@ import { Picture } from 'react-srcset'
 const MyComponent = () => <Picture />;
 ```
 
+## Contribute
+
+First, install all dependencies:
+
+```bash
+$ yarn
+$ cd ./example && yarn
+```
+
+To ease both module and example contributions, start the following commands in paralel.
+
+```bash
+$ yarn start
+# AND
+$ cd ./example && yarn start
+```
+
 ## License
 
 MIT © [Antistatique](https://github.com/Antistatique)
