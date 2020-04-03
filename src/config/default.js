@@ -5,7 +5,7 @@ export default {
   breakpoints: {
     lg: 1280, // Desktops
     md: 768, // New smartphones / tablets
-    sm: 0, // Old/small smartphones
+    sm: 0, // small/old smartphones
   },
   max: 2560,
   widths: {
