@@ -14,7 +14,7 @@ const options = {
   // Square placeholder's width
   minSize: 30,
 
-  // Breakpoints min-widths (start from x)
+  // Breakpoints min widths (start from x)
   breakpoints: {
     lg: 1280, // Desktops
     md: 768, // New smartphones or tablets

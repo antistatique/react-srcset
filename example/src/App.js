@@ -16,7 +16,7 @@ const App = () => {
       <div className="max-w-screen-md mx-auto px-5">
         <p className="text-lg py-12">
           “<code>react-srcset</code> is a set of pictures dedicated React
-          component.”
+          components”.
         </p>
 
         <h2 className="text-2xl font-medium mb-2">Install</h2>
