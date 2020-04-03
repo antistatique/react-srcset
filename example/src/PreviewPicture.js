@@ -11,6 +11,28 @@ import Input from './Input';
 
 const beautify = curry(html_beautify);
 
+const options = {
+  srcParameters: ['host', 'colors'],
+  setSrc: ({ w, h, ext, host, colors }) =>
+    `https://${host}/${w}x${h}/${colors}.${ext}`,
+  minSize: 30, // square placeholder's width
+  // Based on min-width
+  breakpoints: {
+    lg: 1280, // Desktops
+    md: 768, // New smartphones / tablets
+    sm: 0, // small/old smartphones
+  },
+  max: 2560,
+  widths: {
+    sm: 768,
+    md: 1280,
+    lg: {
+      full: 2560,
+      '100': 1280,
+    },
+  },
+};
+
 const PreviewPicture = () => {
   const [ratio, setRatio] = useState('16/10');
   const [sm, setSm] = useState('100');
@@ -32,13 +54,25 @@ const PreviewPicture = () => {
       match(/<picture(.+|\n)+<\/picture>/gm),
       head,
       beautify(__, beautifyOptions),
-    )(<Picture ratio={ratio} sm={sm} md={md} lg={lg} alt={alt} />);
+    )(
+      <PictureProvider options={options}>
+        <Picture
+          ratio={ratio}
+          sm={sm}
+          md={md}
+          lg={lg}
+          alt={alt}
+          host="via.placeholder.com"
+          colors="81E6D9/1A202C"
+        />
+      </PictureProvider>,
+    );
 
     setHtml(markup);
   }, [ratio, sm, md, lg, alt]);
 
   return (
-    <PictureProvider options={{}}>
+    <PictureProvider options={options}>
       <div style={{ maxWidth: '800px', margin: '0 auto' }}>
         <div className="flex mb-6">
           <div className="w-1/3 pr-3">
@@ -79,7 +113,15 @@ const PreviewPicture = () => {
             />
           </div>
           <div className="w-2/3 bg-gray-900 ml-3 p-3 rounded flex items-center">
-            <Picture ratio={ratio} sm={sm} md={md} lg={lg} alt={alt} />
+            <Picture
+              ratio={ratio}
+              sm={sm}
+              md={md}
+              lg={lg}
+              alt={alt}
+              host="via.placeholder.com"
+              colors="81E6D9/1A202C"
+            />
           </div>
         </div>
 
@@ -87,21 +129,23 @@ const PreviewPicture = () => {
           <h3 className="text-lg font-medium mb-3">JSX</h3>
           <Highlight className="javascript rounded mb-6">
             {`import React from 'react';
-import { Picture } from 'react-srcset';
+  import { Picture } from 'react-srcset';
 
-const MyPicture = () =>
-  <Picture
-    ratio="${ratio}"
-    sm="${sm}"
-    md="${md}"
-    lg="${lg}"
-    alt="${alt}"
-  />;`}
+  const MyPicture = () =>
+    <Picture
+      ratio="${ratio}"
+      sm="${sm}"
+      md="${md}"
+      lg="${lg}"
+      alt="${alt}"
+      host="via.placeholder.com"
+      colors="81E6D9/1A202C"
+    />;`}
           </Highlight>
           <h3 className="text-lg font-medium mb-3">HTML (result)</h3>{' '}
           <Highlight className="html rounded mb-2">{html}</Highlight>
           <em className="text-sm text-gray-700">
-            Nice picture tag generator, right?
+            Cool picture tag generator, right?
           </em>
         </div>
       </div>

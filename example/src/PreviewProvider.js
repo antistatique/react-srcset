@@ -2,14 +2,18 @@
 import React from 'react';
 import Highlight from 'react-highlight';
 
-const PreviewProvider = ({ settings, onChange }) => (
-  <Highlight className="javascript rounded mb-6">
+const PreviewProvider = () => (
+  <Highlight className="javascript rounded mb-6 text-sm">
     {`import React from 'react';
 import { PictureProvider } from 'react-srcset';
 
 const options = {
+  // Extra Picture props used to generate picture URL
+  srcParameters: ['host', 'colors'],
+
   // Source generation function
-  setSrc: (w, h) => \`https://via.placeholder.com/\${w}x\${h}.jpg\`,
+  setSrc: ({ w, h, ext, host, colors }) =>
+    \`https://\${host}/\${w}x\${h}/\${colors}.\${ext}\`,
 
   // Square placeholder's width
   minSize: 30,

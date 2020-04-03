@@ -14,24 +14,37 @@ import {
   imgStyle,
 } from './Picture.styles.jsx';
 
-const Picture = ({ ratio, sm, md, lg, alt }) => {
+const Picture = ({ ratio, sm, md, lg, alt, ...rest }) => {
   const { options } = useContext(PictureContext);
   const [w, h] = parseRatio(ratio);
   const sizes = { sm, md, lg };
-  const { breakpoints, max, minSize, setSrc } = mergeDeepRight(
+
+  const { breakpoints, max, minSize, setSrc, srcParameters } = mergeDeepRight(
     defaultConfig,
     options || {},
   );
 
-  const regexExt = new RegExp(/(\.(gif|jpg|jpeg|tiff|png|webp))/g);
-  const placeholder = setSrc(minSize, minSize).replace(regexExt, '.jpg');
+  const parameters = srcParameters.reduce(
+    (acc, val) => ({
+      ...acc,
+      [val]: rest[val],
+    }),
+    {},
+  );
+
+  const placeholder = setSrc({
+    w: minSize,
+    h: minSize,
+    etx: 'jpg',
+    ...parameters,
+  });
 
   // Generate full path based on breakpoint and scale
-  const getPath = (breakpoint, scale, ext, retina = false) => {
+  const getSrc = (breakpoint, scale, ext, retina = false) => {
     const { width, height } = measureImage(breakpoint, scale, ratio);
     const dpi = retina && width * 2 <= max ? 2 : 1;
 
-    return setSrc(width * dpi, height * dpi).replace(regexExt, `.${ext}`);
+    return setSrc({ w: width * dpi, h: height * dpi, ext, ...parameters });
   };
 
   return (
@@ -49,22 +62,22 @@ const Picture = ({ ratio, sm, md, lg, alt }) => {
             <source
               media={`(min-width: ${breakpoints[b]}px)`}
               srcSet={`
-    ${getPath(b, sizes[b], 'webp')} 1x,
-    ${getPath(b, sizes[b], 'webp', true)} 2x`}
+    ${getSrc(b, sizes[b], 'webp')} 1x,
+    ${getSrc(b, sizes[b], 'webp', true)} 2x`}
               type="image/webp"
             />
             <source
               media={`(min-width: ${breakpoints[b]}px)`}
               srcSet={`
-    ${getPath(b, sizes[b], 'jpg')} 1x,
-    ${getPath(b, sizes[b], 'jpg', true)} 2x`}
+    ${getSrc(b, sizes[b], 'jpg')} 1x,
+    ${getSrc(b, sizes[b], 'jpg', true)} 2x`}
             />
             {'\n\n'}
           </React.Fragment>
         ))}
         <img
           style={imgStyle}
-          src={`${getPath('md', sizes.md, 'jpg')}`}
+          src={`${getSrc('md', sizes.md, 'jpg')}`}
           alt={alt}
         />
         {'\n'}

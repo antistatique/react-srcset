@@ -19,7 +19,7 @@
     "start": "rollup -c -w",
     "prepare": "yarn run build",
     "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build",
+    "deploy": "npm run predeploy && gh-pages -d example/build",
     "lint:css": "stylelint ./**/*.{css,scss,styles.js,styles.jsx}",
     "lint:js": "eslint . --ext .js,.jsx --max-warnings=0"
   },

@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useState } from 'react';
 import Highlight from 'react-highlight';
+import { PictureProvider } from 'react-srcset';
 
 import PreviewPicture from './PreviewPicture';
 import PreviewProvider from './PreviewProvider';
@@ -43,6 +44,17 @@ const App = () => {
           automatic and responsive pictures.
         </p>
 
+        <p className="mb-5">
+          <strong>
+            ⚠️ All non-listed props below can be used to generate the picture
+            URL.
+          </strong>{' '}
+          <span>
+            See <code>srcParameters</code> and <code>setSrc</code> options
+            above.
+          </span>
+        </p>
+
         <div className="mb-6">
           <PreviewPicture />
         </div>
@@ -68,7 +80,6 @@ const App = () => {
           </a>
         </address>
       </div>
-      {/* <Preview /> */}
     </div>
   );
 };
