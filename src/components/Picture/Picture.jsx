@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { mergeDeepRight } from 'ramda';
 import PropTypes from 'prop-types';
 
 import measureImage from '../../utils/measureImage';
 import parseRatio from '../../utils/parseRatio';
 import defaultConfig from '../../config/default';
+import { PictureContext } from '../PictureProvider/PictureProvider.jsx';
 
 import {
   wrapperStyle,
@@ -12,10 +14,14 @@ import {
   imgStyle,
 } from './Picture.styles.jsx';
 
-const Img = ({ setSrc, ratio, sm, md, lg, alt, options }) => {
+const Picture = ({ ratio, sm, md, lg, alt }) => {
+  const { options } = useContext(PictureContext);
   const [w, h] = parseRatio(ratio);
   const sizes = { sm, md, lg };
-  const { breakpoints, max, minSize } = options || defaultConfig;
+  const { breakpoints, max, minSize, setSrc } = mergeDeepRight(
+    defaultConfig,
+    options || {},
+  );
 
   const regexExt = new RegExp(/(\.(gif|jpg|jpeg|tiff|png|webp))/g);
   const placeholder = setSrc(minSize, minSize).replace(regexExt, '.jpg');
@@ -67,18 +73,15 @@ const Img = ({ setSrc, ratio, sm, md, lg, alt, options }) => {
   );
 };
 
-Img.propTypes = {
-  setSrc: PropTypes.func,
+Picture.propTypes = {
   ratio: PropTypes.string,
   sm: PropTypes.string,
   md: PropTypes.string,
   lg: PropTypes.string,
   alt: PropTypes.string,
-  options: PropTypes.object,
 };
 
-Img.defaultProps = {
-  setSrc: (w, h) => `https://via.placeholder.com/${w}x${h}.jpg`,
+Picture.defaultProps = {
   ratio: '16/9',
   sm: '100',
   md: '100',
@@ -86,4 +89,4 @@ Img.defaultProps = {
   alt: 'Alternative text; must describe the image',
 };
 
-export default Img;
+export default Picture;

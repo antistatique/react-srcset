@@ -1,4 +1,5 @@
 export default {
+  setSrc: (w, h) => `https://via.placeholder.com/${w}x${h}.jpg`,
   minSize: 30, // square placeholder's width
   // Based on min-width
   breakpoints: {

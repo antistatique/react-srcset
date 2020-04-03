@@ -1,12 +1,14 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { renderToString } from 'react-dom/server';
+// eslint-disable-next-line camelcase
 import { html_beautify } from 'js-beautify';
-import { Picture } from 'react-srcset';
+import { Picture, PictureProvider } from 'react-srcset';
 
 const pictureTag = new RegExp(/<picture(.+|\n)+<\/picture>/gm);
 
 const App = () => (
-  <div>
+  <PictureProvider options={{}}>
     <div style={{ maxWidth: '800px', margin: '0 auto' }}>
       <Picture ratio="16/5" />
 
@@ -28,6 +30,6 @@ const App = () => (
         )}
       </pre>
     </div>
-  </div>
+  </PictureProvider>
 );
 export default App;
