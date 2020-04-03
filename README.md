@@ -1,6 +1,6 @@
 # 📐🖼️ react-srcset
 
-> Automated responsive images
+> Pictures dedicated React components
 
 [![NPM](https://img.shields.io/npm/v/react-srcset.svg)](https://www.npmjs.com/package/react-srcset) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -17,10 +17,32 @@ npm install --save react-srcset
 ```jsx
 import React, { Component } from 'react'
 
-import { Picture } from 'react-srcset'
+import { PictureProvider, Picture } from 'react-srcset'
 
-const MyComponent = () => <Picture />;
+const options = {
+  srcParameters: ['host'],
+  setSrc: ({ w, h, ext, host }) => `https://${host}/${w}x${h}.${ext}`,
+};
+
+const MyComponent = () => (
+  <PictureProvider options={options}>
+    <Picture
+      ratio={ratio}
+      sm={sm}
+      md={md}
+      lg={lg}
+      alt={alt}
+      host="via.placeholder.com"
+    />
+  </PictureProvider>
+);
 ```
+
+
+
+For (a lot) more information, 📗 **[read the interactive documentation](https://antistatique.github.io/react-srcset)**
+
+
 
 ## Contribute
 
