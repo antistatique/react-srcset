@@ -1,6 +1,6 @@
 export default {
   srcParameters: [],
-  setSrc: ({ w, h, ext }) => `https://via.placeholder.com/${w}x${h}.${ext}`,
+  setSrc: ({ w, h, ext }) => `https://dummyimage.com/${w}x${h}.${ext}`,
 
   minSize: 30, // square placeholder's width
   // Based on min-width

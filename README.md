@@ -32,7 +32,7 @@ const MyComponent = () => (
       md={md}
       lg={lg}
       alt={alt}
-      host="via.placeholder.com"
+      host="dummyimage.com"
     />
   </PictureProvider>
 );

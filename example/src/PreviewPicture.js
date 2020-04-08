@@ -62,7 +62,7 @@ const PreviewPicture = () => {
           md={md}
           lg={lg}
           alt={alt}
-          host="via.placeholder.com"
+          host="dummyimage.com"
           colors="81E6D9/1A202C"
         />
       </PictureProvider>,
@@ -119,7 +119,7 @@ const PreviewPicture = () => {
               md={md}
               lg={lg}
               alt={alt}
-              host="via.placeholder.com"
+              host="dummyimage.com"
               colors="81E6D9/1A202C"
             />
           </div>
@@ -138,7 +138,7 @@ const PreviewPicture = () => {
       md="${md}"
       lg="${lg}"
       alt="${alt}"
-      host="via.placeholder.com"
+      host="dummyimage.com"
       colors="81E6D9/1A202C"
     />;`}
           </Highlight>
